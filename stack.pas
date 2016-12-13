@@ -4,8 +4,9 @@ unit Stack;
 
 interface
 
-function Pop: word;
-procedure Push(v: word);
+function StackEmpty: boolean;
+function StackPop: word;
+procedure StackPush(v: word);
 
 implementation
 
@@ -18,17 +19,22 @@ begin
     setlength(WordStack, length(WordStack)+100);
 end;
 
-function Pop: word;
+function StackEmpty: boolean;
 begin
-  Pop := 0;
+  StackEmpty := Current=0;
+end;
+
+function StackPop: word;
+begin
+  StackPop := 0;
   if Current<>0 then
   begin
     dec(Current);
-    Pop := WordStack[Current];
+    StackPop := WordStack[Current];
   end;
 end;
 
-procedure Push(v: word);
+procedure StackPush(v: word);
 begin
   Init;
   WordStack[Current] := v;
